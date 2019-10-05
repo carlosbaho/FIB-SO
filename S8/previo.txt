@@ -1,0 +1,46 @@
+1) Crea una pipe con nombre mediante el comando mknod. A continuación lanza un proceso que ejecute el programa ‘cat’ redireccionando su salida estándar hacia la pipe que acabas de crear. En una shell diferente lanza otro proceso que ejecute también el programa ‘cat’, pero ahora redireccionando su entrada estándar hacia la pipe que acabas de crear. Introduce datos por teclado, en la primera Shell, y pulsa ^D para indicar el fin. Anota en el fichero “previo.txt” los comandos que has ejecutado.
+
+shell1:				shell2:
+
+mknod pipe1 p			cat < pipe1
+cat > pipe1
+
+----
+
+2) ¿Es posible comunicar los dos comandos ‘cat’ desde dos terminales diferentes a través de una pipe sin nombre (por ejemplo, utilizando un pipeline de la shell visto en la sesión anterior)? ¿y desde el mismo terminal? Razona la respuesta en el fichero “previo.txt”.
+
+No, no es posible. Puesto que deberían ser padre e hijo (y por lo tanto, tener la misma tabla de canales).
+
+----
+
+3) Escribe en el fichero “previo.txt” el fragmento de código que deberíamos añadir a un programa cualquiera para redireccionar su entrada estándar al extremo de escritura de una pipe sin nombre utilizando las llamadas al sistema close y dup. Imagina que el descriptor de fichero asociado al extremo de escritura de la pipe es el 4.
+
+close(0); //el 0 es el canal estandar de entrada, lo cerramos. El puerto 0 queda libre
+dup(4); //se duplica el canal de escritura de la pipe, que nos dicen en el enunciado que se encuentra en el 4. Se asigna al primero que encuentre libre, en este caso el 0
+close(4); //cerramos el canal duplicado para que solo nos quede abierto un canal.
+
+
+----
+
+
+4) Analiza en detalle el código de la función createSocket y serverConnection, y busca en el man el significado de las llamadas a sistema socket, bind, listen y accept.
+
+
+función createSocket.
+Primero define las variables sobre las cuales trabajaremos. Dos enteros, socket y ret, así como un struct.
+En este struct de tipo sockaddr_un definimos la familia del socket y copiamos tambien el path del socket al directorio que que nos han pasado por referencia en forma de cadena d chars (string).
+
+Llamamos a socket, que nos retornara el canal en el cual se ha abierto este nuevo socket.
+Si se produce un error (socket = -1), abortamos el proceso.
+
+Si no se produce ninguno, hacemos un bind, que especifica una dirección local sobre la cual se podrá referenciar al socket.
+Si hay error, abortamos el proceso.
+
+Por último, hacemos un listen. Pone al socket a la escucha, es decir, que aceptará conexiones entrantes.
+
+---
+
+función serverConnection
+
+Retorna el canal asociado al socket_fd. El accept rellenará el parámetro socketAddr con la dirección del socket del cliente que está solicitando conexión, asi como pondrá en addrSize el tamaño de esta dirección.
+

@@ -1,0 +1,36 @@
+1)¿Cual/es de los comandos anteriores han dado error al intentar ejecutarlos? Explica por qué.
+$ ln $HOME/A $HOME/A/H 
+
+Ya que los hard links solo se pueden generar de archivos, no en directorios.
+
+
+2)Explica el resultado de ejecutar el comando “stat” utilizando como parámetro cada uno de los nombres simbólicos que has creado anteriormente.
+
+~/A	2 links		3652159
+~/A/D	1 link		3652179		regular file
+~/A/E	1 link		3652180		symbolic link
+~/A/F	1 link		3652181		symbolic link
+~/A/G	2 link		3652179		regular file
+
+
+3)¿Cuál sería el contenido de los ficheros D, E, F y G? Comenta las diferencias que observas al utilizar los comandos “more” o “cat” para ver el contenido del fichero y el resultado de utilizar el comando “readlink”.
+
+D,G y F (symlink de D; readlink => D) contienen "estoy en el directorio A"; E no contiene nada, referencia a un directorio (readlink => ~/A).
+
+
+4)Escribe en papel los accesos que se realizan cuando se accede a los ficheros: “$HOME/A/F”, “$HOME/A/E” y “$HOME/A/G”. Ahora compáralos con el resultado que obtienes cuando ejecutas el comando “namei” con cada uno de los ficheros anteriores. ¿Si ejecutas “readlink $HOME/A/F” se realizan los mismos accesos?
+
+No; de la manera que acabamos de ver.
+
+
+5)Crea un soft link de un fichero a si mismo (un fichero que no exista previamente). Comenta el resultado de mirar su contenido utilizando el comando “cat”. Observa como controla el sistema la existencia de ciclos en el sistema de ficheros. Ejecuta el comando “namei” y comenta su resultado.
+
+cat: T: Too many levels of symbolic links
+
+
+namei: T: exceeded limit of symlinks
+
+
+
+
+

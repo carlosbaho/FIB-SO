@@ -1,0 +1,64 @@
+1. Introduce datos por teclado para ver cómo se copian en pantalla. Para indicar que no quedan datos pulsa ^D (Control+D), que es el equivalente a final de fichero en la lectura de teclado. ¿Qué valor devuelve la llamada read después de pulsar el ^D?
+
+Otra vez el texto introducido y fin ejecución
+
+
+2. Crea un fichero con un editor de texto cualquiera y lanza el programa ./es1 asociando mediante la shell su entrada estándar a ese fichero. Recuerda (ver Sesión 1) que es posible redireccionar la entrada (o la salida) estándar de un comando a un fichero utilizando el carácter especial de la shell < (o > para la salida). Apunta el comando utilizado en el fichero “previo.txt”.
+
+./es1 < input.txt
+
+
+-. ¿Cuál es el resultado? ¿Qué operación realiza el comando ‘grep es’?
+
+-rwxrwxr-x 1 charley95 charley95 7242 abr 27 16:39 es1
+-rwxrw-rw- 1 charley95 charley95 1062 abr 19  2013 es1.c
+-rwxrwxr-x 1 charley95 charley95 7426 abr 27 16:39 es2
+-rwxrw-rw- 1 charley95 charley95 1418 abr 19  2013 es2.c
+-rwxrwxr-x 1 charley95 charley95 7281 abr 27 16:39 es3
+-rwxrw-rw- 1 charley95 charley95  880 nov 13  2013 es3.c
+-rwxrwxr-x 1 charley95 charley95 7242 abr 27 16:39 es4
+-rwxrw-rw- 1 charley95 charley95 1089 abr 19  2013 es4.c
+-rwxrwxr-x 1 charley95 charley95 7121 abr 27 16:39 es5
+-rwxrw-rw- 1 charley95 charley95   22 ene 27  2012 es5.c
+-rwxrwxr-x 1 charley95 charley95 7194 abr 27 16:39 es6
+-rwxrw-rw- 1 charley95 charley95   99 ene 27  2012 es6.c
+-rwxrwxr-x 1 charley95 charley95 7158 abr 27 16:39 es7
+-rwxrw-rw- 1 charley95 charley95   93 ene 30  2012 es7.c
+-rwxrwxr-x 1 charley95 charley95 7245 abr 27 16:39 es8
+-rwxrw-rw- 1 charley95 charley95  552 ene 30  2012 es8.c
+
+grep abcd selecciona de un conjunto de archivos aquellos que contienen en su nombre abcd.
+
+
+3. Ejecuta un pipeline que muestre en la salida estándar el PID, el usuario y el nombre de todos los procesos bash que se están ejecutando en el sistema. Para ello utiliza los comandos ps y grep combinados con una pipe. Anota el comando en el fichero “previo.txt”.
+
+ps -a | grep bash
+
+
+5. En el caso del dispositivo lógico terminal (o consola), el device driver que lo gestiona interpreta todos los bytes que se quieren escribir como códigos ASCII, mostrando el carácter correspondiente. El fichero es8.c contiene un programa que escribe dos veces un número por salida estándar: una usando la representación interna de la máquina y otra convirtiendo antes el número a string. Compílalo y ejecútalo. ¿Cuántos bytes se escriben en cada caso? ¿Qué diferencias observas en lo que aparece en pantalla?
+
+-En el primer caso se escriben 4 bytes y en el segundo 5. Mientras que en la representación interna de la maquina se ve la traducción en hexa de los caracteres ascii, mientras que en el segundo caso se imprime el entero.
+Salida: 
+	Entero en representacion interna. Voy a escribir 4 bytes:
+	B)
+	Entero en formato string. Voy a escribir 5 bytes:
+	10562
+
+6. Analiza el fichero fuente de los dos device drivers y contesta a las siguientes preguntas:
+
+a) ¿Qué función sirve para implementar el read específico del dispositivo gestionado por cada device driver?
+
+read_driver_1 y read_driver_2
+
+b) ¿Qué son el major y el minor? ¿Para qué sirven? ¿Qué major y minor utilizan los dos device drivers?
+
+Son los identificadores de los dirvers. Se usan para asociar un dispositivo logico con un codigo especifico de acceso. Major indica el tipus de dispositiu. Minor indica la instancia concreta respecto al mayor.
+
+myDriver1 -> 
+#define MAJOR_DRIVER_1	249
+#define MINOR_DRIVER_1	0
+
+myDriver2 ->
+#define MAJOR_DRIVER_2	250
+#define MINOR_DRIVER_2	0
+

@@ -1,0 +1,16 @@
+Sesión 8: Gestión de Entrada/Salida
+PREGUNTA 66. ¿Qué contiene el fichero al final de la ejecución?¿Contiene la salida del padre y del hijo, o sólo la del padre? ¿Cómo se explica ese contenido?
+Contiene:
+--
+Inicio
+Fin
+--
+Es decir, la salida del padre y del hijo, pues ambos comparten el mismo canal de salida.
+
+PREGUNTA 67. ¿Acaba el programa padre? ¿y el hijo? ¿Por qué?
+
+El padre no acaba porque se está esperando al hijo (waitpid) y el hijo no acaba porque está bloqueado en la llamada read.
+
+PREGUNTA 68. Si quisiéramos que el lector también pudiera enviar un mensaje al escritor ¿podríamos utilizar la misma pipe con nombre o deberíamos crear otra? Razona la respuesta.
+
+Deberíamos crear otro, puesto que sino no podríamos distinguir quién escribe y quién lee en la misma pipe.

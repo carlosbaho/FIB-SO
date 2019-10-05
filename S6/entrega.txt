@@ -1,0 +1,29 @@
+Sesión 6: Análisis de rendimiento
+PREGUNTA 43. Apunta en el fichero entrega.txt el número de unidades de cálculo (cores o CPUS) que tienes en la máquina. 
+4 nucleos
+
+PREGUNTA 44. Apunta el tiempo medio, máximo y mínimo para una instancia en la Tabla 1 de la hoja de cálculo adjunta.
+
+PREGUNTA 45. Anota para cada experimento los tiempos medio, máximo y mínimo en la Tabla 1 de la hoja de cálculo adjunta.
+
+PREGUNTA 46. ¿Cómo se ve afectado el tiempo de ejecución del proceso?
+En el perfil de so1, es superior, intuyo que porque la prioridad es inferior.
+
+PREGUNTA 47. ¿Qué %CPU ha asignado el sistema a cada proceso? 
+El mismo, puesto que hay cores libres para todos los procesos.
+
+PREGUNTA 48. La asignación, ¿ha sido por proceso o por usuario? ¿Crees que es posible que 1 usuario sature el sistema con este criterio?
+Por proceso. No es posible ya que como la asignación es por proceso.
+
+PREGUNTA 49. ¿Cómo se ve afectado el tiempo de ejecución de FIB respecto al número de instancias de BAJA_PRIO_FIB?
+Cuando hay una baja prioridad, tarda mas en ejecutarse el proceso.
+
+PREGUNTA 50. ¿Qué %CPU ha asignado el sistema a cada proceso con 2 y 5 instancias de BAJA_PRIO_FIB?
+Con el de 2, un 100% para cada uno. Con el de 5, 100% para los 3 primeros, 50% para los otros dos.
+
+PREGUNTA 51. ¿Cuánta memoria física tiene el sistema (F) en bytes?
+8370524160
+
+PREGUNTA 52. Rellena la siguiente tabla y añádela al fichero RendimientoProcesos.ods. ¿En la Ejecución 2 por qué crees que cambia el tiempo de acceso según el número de iteración? 
+PREGUNTA 53. Rellena la siguiente tabla y añádela al fichero RendimientoProcesos.ods (suma los fallos de página de todos los procesos de una misma ejecución)
+

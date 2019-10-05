@@ -1,0 +1,77 @@
+Sesión 7: Gestión de Entrada/Salida
+
+-------------------------------------
+PREGUNTA 54. Apunta en el fichero “entrega.txt” los comandos que has utilizado en cada apartado. Además entrega el fichero “es1_v2.c” ¿Qué diferencias observas en las dos ejecuciones de strace? ¿Cuántas llamadas a sistema read ejecuta cada versión? ¿Qué influencia puede tener sobre el rendimiento de ambas versiones de código? ¿Por qué?
+
+./es1 > /dev/pts/0 
+
+Respecto a las ejecuciones de strace, se observa que la salida_v2 són bastantes menos llamadas, porque se usa un buffer. Mientras que la otra son muchos mas.
+
+-------------------------------------
+PREGUNTA 55. Explica las diferencias observadas en la salida del programa cuando el primer parámetro vale 0 o 1. ¿Para qué crees que sirve este parámetro?
+
+La salida con parametro 0, es entendible. La otra ni siquiera són caracteres.
+
+-------------------------------------
+PREGUNTA 56. Explica el motivo de los resultados observados dependiendo del formato fichero de entrada.
+
+Cuando lo ejecutamos, la primera entrada que introducimos, que es la generada por es2 con el valor 0, transforma unos numero ya en ascii en otros. Con la otra salida, se ejerce una traducción.
+
+-------------------------------------
+PREGUNTA 57. Explica las diferencias observadas entre la salida del programa es3 y es4. ¿Por qué la salida es inteligible para uno de los ficheros de entrada y no para el otro?
+
+Porque este programa espera entradas en ascii, la salida correspondiente a el valor 0 en es2, és en ascii, por eso la salida de es4 es correcta, mientras que la otra no.
+
+-------------------------------------
+PREGUNTA 58. Escribe los valores que ha mostrado el script showCpuTime.sh para cada uno de los procesos y comenta las diferencias entre ellos en cuanto al consumo de cpu. ¿A qué se deben? Identifica las líneas de código de marcan la diferencia entre ellos
+
+El gasto de cpu es muy reducido en ambos casos.
+
+-------------------------------------
+PREGUNTA 59. Anota en el fichero entrega.txt el resultado de ambas ejecuciones. Entrega el código programado en el fichero es6_v2.c
+
+^C
+Read con interrupt
+
+g
+Read correcto:
+g
+
+-------------------------------------
+PREGUNTA 60. ¿Qué pasaría si no añadiéramos siginterrupt al código? Repite las ejecuciones anteriores eliminando el siginterrupt y anota el resultado en el fichero entrega.txt. 
+
+Que no marca las interrupciones, o se podria quedar en blocked continuo.
+
+-------------------------------------
+PREGUNTA 61. ¿Estaba ya en uso el major especificado en el código? En caso afirmativo, ¿qué driver lo estaba utilizando?
+
+Si, el hidraw y el ptp, respectivamente.
+
+-------------------------------------
+PREGUNTA 62. Apunta la línea de la salida de lsmod correspondiente a myDriver1 y myDriver2. 
+
+myDriver2              12499  0 
+myDriver1              12499  0 
+
+-------------------------------------
+PREGUNTA 63. Apunta la línea de comandos que has utilizado para crear el dispositivo.
+
+sudo mknod myDevice c 227 0 
+
+-------------------------------------
+PREGUNTA 64. Anota en el fichero “entrega.txt” el resultado de la ejecución y explica el resultado obtenido.
+
+Driver 1 read operation
+Sponsored by Laboratorios Gelocatas SL
+fin ejecución
+
+Hemos cargado gracias al driver el contenido del mismo.
+
+-------------------------------------
+PREGUNTA 65. Anota el resultado de la ejecución. Explica el motivo de las diferencias observadas comparando la salida de este ejercicio con la de la apartado 5.
+
+DRIVER 2 READ OPERATION
+SPONSORED BY LABORATORIOS GELOCATAS SL
+fin ejecución
+
+Es diferente respecto al anterior puesto que es otro driver.
